@@ -1,0 +1,46 @@
+.timer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    /* padding: 21px 0px 0px 70px; */
+
+    position: static;
+    width: auto;
+    height: auto;
+
+    border-radius: 20px;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    box-shadow:  5px 5px 19px #858585, 
+                 -5px -5px 19px #ffffff;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    align-self: center;
+    flex-grow: 0;
+    margin: 10px 0px;
+}
+
+.time {
+    position: static;
+    width: auto;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 75px;
+    /* identical to box height */
+
+
+    color: #000000;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 10px 30px;
+}

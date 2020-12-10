@@ -1,0 +1,53 @@
+.exp_explain_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.exp_explain_wrapper .exp_explain_title {
+    font-size: 4rem;
+    align-self: center;
+}
+
+.exp_explain {
+    margin: 1rem;
+    font-size: 2rem;
+}
+
+.exp_explain_wrapper .exp_list {
+    list-style-type: upper-alpha;
+    font-size: 2rem;
+    align-self: center;
+}
+
+.exp_explain_wrapper  .exp_start_button {
+    width: 300px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow:  5px 5px 19px #858585, 
+                 -5px -5px 19px #ffffff;
+    padding: 1rem;
+    margin: 1rem;
+    text-align:center;
+    align-self: center;
+}
+.exp_start_button_text {
+    font-size: 2rem;
+}
+
+.exp_image {
+    width: 70%;
+    height: 70%;
+}
+
+figure {
+    text-align: center;
+    padding: 2rem;
+}
+figure figcaption {
+    text-align: center;
+    font-size: 50px;
+}
+
+.bold {
+    font-weight: bold;
+}

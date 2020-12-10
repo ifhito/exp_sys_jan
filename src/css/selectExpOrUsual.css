@@ -1,0 +1,37 @@
+.select_title {
+    margin: 0 0 2rem 0;
+    font-size: 4rem;
+}
+
+.select_sub_title {
+    margin: 0 0 2rem 0;
+    font-size: 2rem;
+}
+
+.exp_button {
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow:  5px 5px 19px #858585, 
+                 -5px -5px 19px #ffffff;
+    padding: 1rem;
+    margin: 1rem;
+    
+}
+
+.usual_button {
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow:  5px 5px 19px #858585, 
+                 -5px -5px 19px #ffffff;
+    padding: 1rem;
+    margin: 1rem;
+    text-align:center;
+}
+
+.exp_button_text {
+    font-size: 2rem;
+}
+
+.usual_button_text {
+    font-size: 2rem;
+}

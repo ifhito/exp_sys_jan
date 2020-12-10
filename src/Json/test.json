@@ -1,0 +1,1 @@
+{"stimulus":[{"type": "none", "problem": "箸", "name": "", "url": ""}, {"type": "video", "problem": "箸", "name": "エビ", "url": "http://0.0.0.0:5000/stimulus/test_use/エビ.gif"}, {"type": "image", "problem": "箸", "name": "ブーツ", "url": "http://0.0.0.0:5000/stimulus/test_use/ブーツ.jpg"}, {"type": "word", "problem": "箸", "name": "団子", "url": "団子"}]}
