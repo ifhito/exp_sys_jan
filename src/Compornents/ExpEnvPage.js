@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 // import StimulusDataImage from '../Json/stimulus_image.json';
 // import StimulusDataWord from '../Json/stimulus_word.json';
 // import StimulusDataPlane from '../Json/stimulus_not_stimulus.json'
-import StimulusData from '../Json/stimulus_test.json';
+import StimulusData from '../Json/stimulus_6_section.json';
 import StimulusTestData from '../Json/test.json'
 import { withRouter } from 'react-router-dom';
 import ProgressBar from './ProgressBar.js';
@@ -62,14 +62,14 @@ const ExpEnvPage = (props) => {
   const [breakFlag, setBreakFlag] = useState(false);//休憩するかどうか
   const [roopTimes, setRoopTimes] = useState(0);
   const [stims, setStims] = useState([]);
-  const basicTime = props.location.state.test ? (breakFlag ? 5:10):(breakFlag ? 15:30);
+  const basicTime = props.location.state.test ? (breakFlag ? 5:10):(breakFlag ? 1:2);
 //   const StimulusData = {"0":{"0":{"type":"word","problem":"煉瓦","name":"xxx","url_or_data":"革命"}}}
 //   const stimulus = StimulusData[roopNum]
     //const stim_size = Object.keys(props.stimulus).length;
     let stim_size = 0;
-    const rooping_num = props.location.state.test == true ? 1:10;
+    const rooping_num = props.location.state.test == true ? 1:6;
     let stims_dum =[]
-    const slice_num = 50;
+    const slice_num = StimulusData/4;
     // Object.entries(obj).slice(0,2).map(entry => entry[1])
     useEffect(async () => {
       // let stimulus_data_image = shuffleProperties(StimulusDataImage);
@@ -171,7 +171,7 @@ const ExpEnvPage = (props) => {
           </button> : <div></div>} */}
         </div> 
         : 
-        <div className='break_text'>紙を変更してください</div>}
+        <div className='break_text'>休憩<br/>(前に思いついたものはここで発言してください)</div>}
       </div>
       ) :(
             <div></div>

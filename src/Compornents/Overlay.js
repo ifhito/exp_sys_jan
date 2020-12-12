@@ -110,6 +110,7 @@ const Overlay = (props) => {
         await new Promise(r => setTimeout(r, 1000));
       }
       props.setShow(false);
+      setText('START');
     }
     return (
       <MyModal
