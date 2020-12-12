@@ -40,7 +40,7 @@ const ExpEnvMainPage = (props) => {
             </ol>
             <p className='exp_explain bold'>実験では、なるべく創造的なアイデアを出してください。本当に思いつかない場合は上記のようなくだらないアイデアでも一向に構いません。また、実現の可能性や倫理観などは気にせず、自由に考えてください</p>
             <p className='exp_explain'>また、今回の評価では<span className='bold'>数と質</span>を見るため、バランス良く考えることがベストとなります。</p>
-            <p className='exp_explain'>実験時間は30秒を一つの試行とし、それを20回繰り返すものを10回行ってもらいます。20回ごとに休憩を5分間行います</p>
+            <p className='exp_explain'>実験時間は30秒を一つの試行とし、それを20回繰り返すものを6回行ってもらいます。20回ごとに休憩を5分間行います</p>
             <p className='exp_explain'>まずはテストで一度やってみてください(テストでは時間を短縮しています)</p>
             <button className='exp_start_button' onClick={() => handlePageChange(true)}>
                 <span className='exp_start_button_text'>テストをする</span>
