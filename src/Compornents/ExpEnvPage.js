@@ -113,13 +113,10 @@ const ExpEnvPage = (props) => {
       console.log('test', Id, stim_size);
       if(show == false){
         let tmpId = Id + 1;
+        if(breakFlag == true){
         if(tmpId <= stim_size -1){
-          if(breakFlag == true){
             setId(Id + 1);
             setBreakFlag(!breakFlag);
-          }else{
-            setBreakFlag(!breakFlag);
-          }
         }else{
           if(roopTimes + 1 >= rooping_num){
             if(props.location.state.test){
@@ -137,6 +134,9 @@ const ExpEnvPage = (props) => {
           setShow(true);
           setRoopTimes(roopTimes + 1);
         }
+      }else{
+        setBreakFlag(!breakFlag);
+      }
       }
     };
 

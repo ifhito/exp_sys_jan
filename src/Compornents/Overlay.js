@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSpinner} from '@fortawesome/free-solid-svg-icons'
 import '../css/overlay.css';
 import ProgressBar from './ProgressBar.js'
-
+import { useState } from 'react';
 const Overlay = (props) => {
   // console.log(props.problem);
   const Backdrop = styled('div')`
@@ -19,6 +19,7 @@ const Overlay = (props) => {
     opacity: 0.5;
   `;
   const renderBackdrop = (props) => <Backdrop {...props} />;
+  const [text, setText] = useState('START');
   const MyModal = styled(Modal)`
       position: fixed;
       width: 85%;
@@ -103,6 +104,13 @@ const Overlay = (props) => {
       </MyModal>
     );
   } else if (props.type == 'expEnv'){
+    const handleShow = async () => {
+      for(let i=0;i<3;i++){
+        setText(String(3-i));
+        await new Promise(r => setTimeout(r, 1000));
+      }
+      props.setShow(false);
+    }
     return (
       <MyModal
         show={props.show}
@@ -114,9 +122,10 @@ const Overlay = (props) => {
         <div className="readyBox">
           <div className="ready">
             <div className="ready_box_sub">
-              <button className="goButton" onClick={() => props.setShow(false)}>
-                <span className="goButtonText">START</span>
-              </button>
+              {text == 'START'?(
+              <button className="goButton" onClick={handleShow}>
+                <span className="goButtonText">{text}</span>
+              </button>):(<span className="goButtonText">{text}</span>)}
             </div>
           </div>
           <ProgressBar bgcolor={"#000000"} numerator={props.roopTimes} denominator={props.rooping_num}/>

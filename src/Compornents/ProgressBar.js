@@ -10,7 +10,7 @@ const ProgressBar = (props) => {
     
       const fillerStyles = {
         height: '100%',
-        width: `${(numerator/denominator)*100}%`,
+        width: `${((numerator+1)/denominator)*100}%`,
         backgroundColor: bgcolor,
         borderRadius: 'inherit',
         textAlign: 'right'
@@ -25,7 +25,7 @@ const ProgressBar = (props) => {
     return (
         <div style={containerStyles}>
             <div style={fillerStyles}>
-                <span style={labelStyles}>{numerator}/{denominator}</span>
+                <span style={labelStyles}>{numerator+1}/{denominator}</span>
             </div>
         </div>
     );
