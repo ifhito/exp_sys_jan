@@ -62,7 +62,7 @@ const ExpEnvPage = (props) => {
   const [breakFlag, setBreakFlag] = useState(false);//休憩するかどうか
   const [roopTimes, setRoopTimes] = useState(0);
   const [stims, setStims] = useState([]);
-  const basicTime = props.location.state.test ? (breakFlag ? 5:10):(breakFlag ? 1:2);
+  const basicTime = breakFlag ? props.location.state.breakTime:props.location.state.expTime;
 //   const StimulusData = {"0":{"0":{"type":"word","problem":"煉瓦","name":"xxx","url_or_data":"革命"}}}
 //   const stimulus = StimulusData[roopNum]
     //const stim_size = Object.keys(props.stimulus).length;

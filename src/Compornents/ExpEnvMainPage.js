@@ -5,8 +5,8 @@ import exp_1 from '../photo/exp_img_1.png';
 import exp_2 from '../photo/exp_img_2.png';
 import exp_3 from '../photo/exp_img_3.png';
 const ExpEnvMainPage = (props) => {
-  const handlePageChange = (stage) => {
-    props.history.push({pathname: '/expEnvPage', state: { test: stage }})
+  const handlePageChange = (stage,breakTime,expTime) => {
+    props.history.push({pathname: '/expEnvPage', state: { test: stage ,breakTime: breakTime, expTime:expTime}})
   };
   return (
     <div className="Container">
@@ -42,13 +42,15 @@ const ExpEnvMainPage = (props) => {
             <p className='exp_explain'>また、今回の評価では<span className='bold'>数と質</span>を見るため、バランス良く考えることがベストとなります。</p>
             <p className='exp_explain'>実験時間は30秒を一つの試行とし、それを20回繰り返すものを6回行ってもらいます。20回ごとに休憩を5分間行います</p>
             <p className='exp_explain'>まずはテストで一度やってみてください(テストでは時間を短縮しています)</p>
-            <button className='exp_start_button' onClick={() => handlePageChange(true)}>
+            <button className='exp_start_button' onClick={() => handlePageChange(true,5,10)}>
                 <span className='exp_start_button_text'>テストをする</span>
             </button>
-            <button className='exp_start_button' onClick={() => handlePageChange(false)}>
+            <button className='exp_start_button' onClick={() => handlePageChange(false,10,30)}>
                 <span className='exp_start_button_text'>実験を始める</span>
             </button>
+          　
         </div>
+        <button  className='' onClick={() => handlePageChange(false,1,2)}>デバッグ用</button>
     </div>
   );
 };
