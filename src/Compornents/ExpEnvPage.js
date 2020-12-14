@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 // import StimulusDataImage from '../Json/stimulus_image.json';
 // import StimulusDataWord from '../Json/stimulus_word.json';
 // import StimulusDataPlane from '../Json/stimulus_not_stimulus.json'
-import StimulusData from '../Json/stimulus_6_section.json';
+import StimulusData from '../Json/stimulus_6_section_sakamoto.json';
 import StimulusTestData from '../Json/test.json'
 import { withRouter } from 'react-router-dom';
 import ProgressBar from './ProgressBar.js';
@@ -62,7 +62,7 @@ const ExpEnvPage = (props) => {
   const [breakFlag, setBreakFlag] = useState(false);//休憩するかどうか
   const [roopTimes, setRoopTimes] = useState(0);
   const [stims, setStims] = useState([]);
-  const basicTime = props.location.state.test ? (breakFlag ? 5:10):(breakFlag ? 1:2);
+  const basicTime = props.location.state.test ? (breakFlag ? 5:10):(breakFlag ? 10:30);
 //   const StimulusData = {"0":{"0":{"type":"word","problem":"煉瓦","name":"xxx","url_or_data":"革命"}}}
 //   const stimulus = StimulusData[roopNum]
     //const stim_size = Object.keys(props.stimulus).length;
@@ -114,26 +114,26 @@ const ExpEnvPage = (props) => {
       if(show == false){
         let tmpId = Id + 1;
         if(breakFlag == true){
-        if(tmpId <= stim_size -1){
-            setId(Id + 1);
-            setBreakFlag(!breakFlag);
-        }else{
-          if(roopTimes + 1 >= rooping_num){
-            if(props.location.state.test){
-              props.history.push({
-                pathname: '/expEnvMainPage'
-              });
-            }else{
-              props.history.push({
-                pathname: '/finish',
-              });
+          if(tmpId <= stim_size -1){
+              setId(Id + 1);
+              setBreakFlag(!breakFlag);
+          }else{
+            if(roopTimes + 1 >= rooping_num){
+              if(props.location.state.test){
+                props.history.push({
+                  pathname: '/expEnvMainPage'
+                });
+              }else{
+                props.history.push({
+                  pathname: '/finish',
+                });
 
+              }
             }
+            setId(Id + 1);
+            setShow(true);
+            setRoopTimes(roopTimes + 1);
           }
-          setId(Id + 1);
-          setShow(true);
-          setRoopTimes(roopTimes + 1);
-        }
       }else{
         setBreakFlag(!breakFlag);
       }
@@ -166,22 +166,19 @@ const ExpEnvPage = (props) => {
             name={stims[Id].name}
             type={stims[Id].type}
           />
-          {/* {stimulusFlag == false ? <button className="stimulusButton" onClick={handleNext}>
-            <span className="differentStimulusButton">Different</span>
-          </button> : <div></div>} */}
         </div> 
         : 
-        <div className='break_text'>休憩<br/>(前に思いついたものはここで発言してください)</div>}
+        (<div className='wrapper'><div className='break_text'>休憩</div><br/><div className='break_text'>(前の刺激で思いついたものはここで発言してください)</div></div>)}
       </div>
       ) :(
             <div></div>
         )}    
         {show == false ? (
-        <ProgressBar bgcolor={"grey"} numerator={Id - stims.length/rooping_num*roopTimes} denominator={stim_size/(roopTimes+1)}/>
+        <ProgressBar bgcolor={'#323232'} numerator={Id - stims.length/rooping_num*roopTimes} denominator={stim_size/(roopTimes+1)}/>
       ) : (
         <div></div>
       )}
-      <Overlay setShow={setShow} roopTimes={roopTimes} rooping_num={rooping_num} show={show} type={loading} />
+      <Overlay setShow={setShow} setBreak={setBreakFlag} roopTimes={roopTimes} rooping_num={rooping_num} show={show} type={loading} />
     </div>
   );
 };
