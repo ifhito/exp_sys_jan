@@ -110,6 +110,7 @@ const Overlay = (props) => {
         await new Promise(r => setTimeout(r, 1000));
       }
       props.setShow(false);
+      props.setBreak(false);
       setText('START');
     }
     return (
@@ -129,7 +130,7 @@ const Overlay = (props) => {
               </button>):(<span className="goButtonText">{text}</span>)}
             </div>
           </div>
-          <ProgressBar bgcolor={"#000000"} numerator={props.roopTimes} denominator={props.rooping_num}/>
+          <ProgressBar bgcolor={"#323232"} numerator={props.roopTimes} denominator={props.rooping_num}/>
         </div>
       </MyModal>
     );
