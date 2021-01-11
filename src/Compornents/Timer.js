@@ -36,7 +36,7 @@ const Timer = (props) => {
   return (
     <>
     <div className="timer">
-      <p className="time">{ basicTime <= now ? basicTime : sec}</p>
+      <p className="time">{ basicTime <= now ? '15:00' : min + ':' + sec}</p>
     </div>
 
     </>

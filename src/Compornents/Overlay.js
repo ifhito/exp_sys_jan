@@ -18,7 +18,7 @@ const Overlay = (props) => {
     background-color: #000;
     opacity: 0.5;
   `;
-  const renderBackdrop = (props) => <Backdrop {...props} />;
+  const renderBackdrop = (props) => <Backdrop />;
   const [text, setText] = useState('START');
   const MyModal = styled(Modal)`
       position: fixed;
@@ -123,6 +123,7 @@ const Overlay = (props) => {
       >
         <div className="readyBox">
           <div className="ready">
+          {props.Id == 0 ? <div className='readyText'>次のセクションでは刺激なしで<br/>アイデアを考えていただきます</div>:<div className='readyText'>次のセクションではGIF刺激を使って<br/>アイデアを考えていただきます</div>}
             <div className="ready_box_sub">
               {text == 'START'?(
               <button className="goButton" onClick={handleShow}>

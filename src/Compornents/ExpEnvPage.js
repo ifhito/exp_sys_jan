@@ -11,10 +11,43 @@ import { useState, useEffect } from 'react';
 // import StimulusDataImage from '../Json/stimulus_image.json';
 // import StimulusDataWord from '../Json/stimulus_word.json';
 // import StimulusDataPlane from '../Json/stimulus_not_stimulus.json'
-import StimulusData from '../Json/stimulus_6_section_sakamoto.json';
+// import StimulusData from '../Json/stimulus_remote.json';
 import StimulusTestData from '../Json/test.json'
 import { withRouter } from 'react-router-dom';
 import ProgressBar from './ProgressBar.js';
+import close_0 from '../photo/stimlus_close_and_remote/close_0.gif'
+import close_1 from '../photo/stimlus_close_and_remote/close_1.gif'
+import close_2 from '../photo/stimlus_close_and_remote/close_2.gif'
+import remote_0 from '../photo/stimlus_close_and_remote/remote_0.gif'
+import remote_1 from '../photo/stimlus_close_and_remote/remote_1.gif'
+import remote_2 from '../photo/stimlus_close_and_remote/remote_2.gif'
+import test_0 from '../photo/test_use/test_0.gif'
+import test_1 from '../photo/test_use/test_1.gif'
+import test_2 from '../photo/test_use/test_2.gif'
+const StimulusData_remote = {
+  "stimulus":[
+      {"type": "none", "problem": "大学生のためのオンラインショッピングモバイルアプリの創造的なアイデアを考えてください", "name": "", "url": ""},
+      {"type": "video", "problem": "大学生のためのオンラインショッピングモバイルアプリの創造的なアイデアを考えてください", "name": "Michael Jackson", "url": remote_0},
+      {"type": "video", "problem": "大学生のためのオンラインショッピングモバイルアプリの創造的なアイデアを考えてください", "name": "Wood", "url": remote_1},
+      {"type": "video", "problem": "大学生のためのオンラインショッピングアプリの創造的なアイデアを考えてください", "name": "Fungus", "url": remote_2}
+      ]
+}
+const StimulusData_close = {
+  "stimulus":[
+      {"type": "none", "problem": "大学生のためのオンラインショッピングモバイルアプリの創造的なアイデアを考えてください", "name": "", "url": ""},
+      {"type": "video", "problem": "大学生のためのオンラインショッピングモバイルアプリの創造的なアイデアを考えてください", "name": "Michael Jackson", "url": close_0},
+      {"type": "video", "problem": "大学生のためのオンラインショッピングモバイルアプリの創造的なアイデアを考えてください", "name": "Wood", "url": close_1},
+      {"type": "video", "problem": "大学生のためのオンラインショッピングアプリの創造的なアイデアを考えてください", "name": "Fungus", "url": close_2}
+      ]
+}
+const StimulusData_test = {
+  "stimulus":[
+    {"type": "none", "problem": "", "name": "", "url": ""},
+    {"type": "video", "problem": "箸", "name": "エビ", "url": test_0},
+    {"type": "video", "problem": "箸", "name": "ブーツ", "url": test_1},
+    {"type": "video", "problem": "地域のビジネスコミュニティで高級ホテル施設の認知度を高めるにはどうしたらよいか？", "name": "団子", "url": test_2}
+  ]
+}
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -63,11 +96,15 @@ const ExpEnvPage = (props) => {
   const [roopTimes, setRoopTimes] = useState(0);
   const [stims, setStims] = useState([]);
   const basicTime = breakFlag ? props.location.state.breakTime:props.location.state.expTime;
+  const StimulusData = props.location.state.type_stim == 'test' ? StimulusData_test:(props.location.state.type_stim == 'close' ? StimulusData_close : StimulusData_remote);
+  // if(props.location.state.type_stim == 'test'){
+  //   StimulusData = StimulusData_test
+  // }
 //   const StimulusData = {"0":{"0":{"type":"word","problem":"煉瓦","name":"xxx","url_or_data":"革命"}}}
 //   const stimulus = StimulusData[roopNum]
     //const stim_size = Object.keys(props.stimulus).length;
     let stim_size = 0;
-    const rooping_num = props.location.state.test == true ? 1:6;
+    const rooping_num = props.location.state.test == true ? 4:4;
     let stims_dum =[]
     const slice_num = StimulusData/4;
     // Object.entries(obj).slice(0,2).map(entry => entry[1])
@@ -97,7 +134,7 @@ const ExpEnvPage = (props) => {
       //   }
       //   setStims(stims_dum);
       // }
-      let stimulus_data = props.location.state.test == true ? StimulusTestData['stimulus']:StimulusData['stimulus'];
+      let stimulus_data = props.location.state.test == true ? StimulusData_test['stimulus']:StimulusData['stimulus'];
       console.log(stimulus_data);
       setStims(stimulus_data);
       setStimulusFlag(!stimulusFlag);
@@ -113,30 +150,50 @@ const ExpEnvPage = (props) => {
       console.log('test', Id, stim_size);
       if(show == false){
         let tmpId = Id + 1;
-        if(breakFlag == true){
-          if(tmpId <= stim_size -1){
-              setId(Id + 1);
-              setBreakFlag(!breakFlag);
-          }else{
-            if(roopTimes + 1 >= rooping_num){
-              if(props.location.state.test){
-                props.history.push({
-                  pathname: '/expEnvMainPage'
-                });
-              }else{
-                props.history.push({
-                  pathname: '/finish',
-                });
-
-              }
-            }
+        if(tmpId <= stim_size -1){
             setId(Id + 1);
-            setShow(true);
-            setRoopTimes(roopTimes + 1);
+            setBreakFlag(!breakFlag);
+        }else{
+          if(roopTimes + 1 >= rooping_num){
+            if(props.location.state.test){
+              props.history.push({
+                pathname: '/expEnvMainPage'
+              });
+            }else{
+              props.history.push({
+                pathname: '/finish',
+              });
+
+            }
           }
-      }else{
-        setBreakFlag(!breakFlag);
-      }
+          setId(Id + 1);
+          setShow(true);
+          setRoopTimes(roopTimes + 1);
+        }
+      //   if(breakFlag == true){
+      //     if(tmpId <= stim_size -1){
+      //         setId(Id + 1);
+      //         setBreakFlag(!breakFlag);
+      //     }else{
+      //       if(roopTimes + 1 >= rooping_num){
+      //         if(props.location.state.test){
+      //           props.history.push({
+      //             pathname: '/expEnvMainPage'
+      //           });
+      //         }else{
+      //           props.history.push({
+      //             pathname: '/finish',
+      //           });
+
+      //         }
+      //       }
+      //       setId(Id + 1);
+      //       setShow(true);
+      //       setRoopTimes(roopTimes + 1);
+      //     }
+      // }else{
+      //   setBreakFlag(!breakFlag);
+      // }
       }
     };
 
@@ -159,7 +216,7 @@ const ExpEnvPage = (props) => {
         <div className="stimulusContainer">
         {breakFlag == false ?         
         <div className="wrapper">
-          <div className="problemTitleStimulus">{stims[Id].problem}</div>
+          {props.location.state.test == true ? <div className="problemTitleStimulus">地域のビジネスコミュニティで高級ホテル施設の認知度を高めるにはどうしたらよいか？</div>:<div className="problemTitleStimulus">大学生のためのオンラインショッピングモバイルアプリの<br/>アイデアを考えてください</div>}
           <Stimulus
             className='image'
             content={stims[Id].url}
@@ -168,17 +225,17 @@ const ExpEnvPage = (props) => {
           />
         </div> 
         : 
-        (<div className='wrapper'><div className='break_text'>休憩</div><br/><div className='break_text'>(前の刺激で思いついたものはここで発言してください)</div></div>)}
+        (<div className='wrapper'><div className='break_text'>休憩</div><br/><div className='break_text'>(前の画面で言えなかったアイデアはここで発言)</div></div>)}
       </div>
       ) :(
             <div></div>
         )}    
-        {show == false ? (
+        {/* {show == false ? (
         <ProgressBar bgcolor={'#323232'} numerator={Id - stims.length/rooping_num*roopTimes} denominator={stim_size/(roopTimes+1)}/>
       ) : (
         <div></div>
-      )}
-      <Overlay setShow={setShow} setBreak={setBreakFlag} roopTimes={roopTimes} rooping_num={rooping_num} show={show} type={loading} />
+      )} */}
+      <Overlay setShow={setShow} setBreak={setBreakFlag} roopTimes={roopTimes} rooping_num={rooping_num} show={show} type={loading} Id={Id}/>
     </div>
   );
 };
